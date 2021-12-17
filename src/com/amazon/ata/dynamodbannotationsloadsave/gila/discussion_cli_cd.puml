@@ -1,0 +1,77 @@
+@startuml
+class DiscussionCliRunner #lightgrey
+class DiscussionCli #lightgrey
+class DiscussionCliState #lightgrey
+enum DiscussionCliOperation #lightgrey {
+	LOGIN
+    VIEW_TOPICS
+    CHANGE_TOPIC
+    CREATE_TOPIC
+    VIEW_TOPIC_MESSAGES
+    CREATE_TOPIC_MESSAGE
+    EXIT
+}
+
+class Member #lightgrey {
+	- username : String
+    - isActive : Boolean
+    - karmaPointsAvailable : Integer
+}
+class Topic #lightgreen {
+	- name : String
+    - description : String
+    - isArchived : Boolean
+}
+class TopicMessage #lightgreen {
+	- topicName : String
+    - timestamp : String
+    - author : String
+    - messageContent : String
+}
+
+class MemberDao #lightgrey {
+	+ getMember(username : String) : Member
+	+ createMember(member : Member) : Member
+}
+class TopicDao #lightgreen {
+	+ createTopic(topic : Topic) : Topic
+    + getTopics(numTopics : int) : List<Topic>
+}
+class TopicMessageDao #lightgreen {
+	+ getMessagesForTopicName(topicName : String) : List<TopicMessage>
+}
+
+class ChangeTopicHandler #lightgrey
+class CreateTopicHandler #lightgreen
+class CreateTopicMessageHandler #lightgreen
+class ExitHandler #lightgrey
+class LoginHandler #lightgrey
+class ViewTopicMessagesHandler #lightgreen
+class ViewTopicsHandler #lightgreen
+interface DiscussionCliOperationHandler #lightgrey {
+	+ handleRequest(state : DiscussionCliState) : String
+}
+
+DiscussionCliRunner --> DiscussionCli
+DiscussionCli --> DiscussionCliState
+DiscussionCli --> ChangeTopicHandler
+DiscussionCli --> CreateTopicHandler
+DiscussionCli --> CreateTopicMessageHandler
+DiscussionCli --> ExitHandler
+DiscussionCli --> LoginHandler
+DiscussionCli --> ViewTopicMessagesHandler
+DiscussionCli --> ViewTopicsHandler
+ChangeTopicHandler ..> DiscussionCliOperationHandler
+CreateTopicHandler ..> DiscussionCliOperationHandler
+CreateTopicMessageHandler ..> DiscussionCliOperationHandler
+ExitHandler ..> DiscussionCliOperationHandler
+LoginHandler ..> DiscussionCliOperationHandler
+ViewTopicMessagesHandler ..> DiscussionCliOperationHandler
+ViewTopicsHandler ..> DiscussionCliOperationHandler
+ChangeTopicHandler ..> DiscussionCliOperationHandler
+
+LoginHandler --> MemberDao
+CreateTopicHandler --> TopicDao
+ViewTopicsHandler --> TopicDao
+ViewTopicMessagesHandler --> TopicMessageDao
+@enduml
