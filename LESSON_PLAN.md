@@ -9,9 +9,14 @@ The goal of this GP is to help learners implement DynamoDB annotations to their 
 
 ### Kick off
 
-Explain that DynamoDB leverages annotations to map class fields to DynamoDB columns. You can share personal work experiences where converting database data to Java objects is a core feature in just about any project. In fact, many teams have found ways to generate this code. Of course, we won't be generating our annotations today, but you could plant the seed into their minds that code generation is one of the great keys in coding.
+Possible kick off topics:
+- Explain that DynamoDB leverages annotations to map class fields to DynamoDB columns. 
+- You can share personal work experiences where converting database data to Java objects is a core feature in just about any project. 
+- Address code generation as a tool for these kinds of POJO classes, but we need to understand the patterns before this can be realized
 
-Start by explaining that this project is a cli for message boards. You can run the solution code (make sure you've already set up the tables in DynamoDB) and show the learners what the end product will look like. It's also fun to see things update remotely, so after you create a new message or a new topic, you can go to the DynamoDB website and show them that what you created is actually there.
+### Intro to the project
+
+Explain that this project is a cli for message boards. You can run the solution code (make sure you've already set up the tables in DynamoDB) and show the learners what the end product will look like. It's also fun to see things update remotely, so after you create a new message or a new topic, you can go to the DynamoDB website and show them that what you created is actually there.
 
 With the code downloaded, all the learners to run the following commands (these commands are in the README):
 
@@ -21,13 +26,14 @@ aws cloudformation create-stack --region us-west-2 --stack-name dynamodbannotati
 aws cloudformation create-stack --region us-west-2 --stack-name dynamodbannotationsloadsave-topicstable --template-body file://cloudformation/dynamodbannotationsloadsave/classroom/discussion_cli_table_topics.yaml --capabilities CAPABILITY_IAM
 ```
 
-### Intro to the main issue
+### Running the project
 
 With this in place, run the application and try to log in (the app shouldn't fully work yet, but you should see some things happen before it crashes).
 
 Here are some questions you can address with the class:
 1. Log in and provide a username. If you haven’t logged in before, what happens?  
-2. At the moment, we are unable to load into the CLI. Attempting to retrieve topics fails. What is the type of exception thrown by the CLI? 
+   - Crash
+3. At the moment, we are unable to load into the CLI. Attempting to retrieve topics fails. What is the type of exception thrown by the CLI? 
    - DynamoDBMappingException
 4. What is the error message thrown by the exception? 
    - class Topic not annotated with @DynamoDBTable 
@@ -36,7 +42,7 @@ Here are some questions you can address with the class:
 8. Which of the tables you deployed as preparation for this lesson contain items of this class? 
    - show in AWS
 10. What annotation does the exception message say is missing on the class?
-   - @DynamoDBTable
+    - @DynamoDBTable
 
 These are all great things to note. The error is quite clear at what the issue is if we quickly study it. (this is a good example of good excpetion handling)
 
