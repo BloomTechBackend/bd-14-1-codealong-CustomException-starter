@@ -21,11 +21,10 @@ public class MemberDao {
      * @param username The username to look for
      * @return The Member with the given username, if one exists. {@code null} otherwise.
      */
-    public Member getMember(String username) {
+    public Member getMember(String username){
         if (username.equals("")) {
             throw new IllegalArgumentException("username cannot be empty");
         }
-
         return mapper.load(Member.class, username);
     }
 

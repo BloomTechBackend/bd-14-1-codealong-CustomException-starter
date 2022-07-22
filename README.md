@@ -1,3 +1,1 @@
-We will learn
-    - how to change AWS region for DynamoDB in code.
-    - how to create a DynamoDb table through Java code.
+We will create a new custom Exception - MemberNotFoundException. This new exception will be thrown when we do not found the given username in the database. 
