@@ -13,6 +13,7 @@ import com.amazon.ata.dynamodbannotationsloadsave.handler.ViewTopicMessagesHandl
 import com.amazon.ata.dynamodbannotationsloadsave.handler.ViewTopicsHandler;
 import com.amazon.ata.input.console.ATAUserHandler;
 
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 /**
