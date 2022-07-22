@@ -141,7 +141,7 @@ public class DiscussionCliRunner {
      */
     private static DynamoDBMapper getDynamoDBMapper() {
         if (null == mapper) {
-            mapper = new DynamoDBMapper(DynamoDbClientProvider.getDynamoDBClient());
+            mapper = new DynamoDBMapper(DynamoDbClientProvider.getDynamoDBClient(Regions.US_WEST_1));
         }
         return mapper;
     }
