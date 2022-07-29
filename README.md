@@ -1,4 +1,3 @@
-We will create a new custom Exception - MemberNotFoundException. This new exception will be thrown when we do not find the given username in the database. 
 # BD Code-Along 14.1 - Create custom Exception 
 
 ## We will learn
